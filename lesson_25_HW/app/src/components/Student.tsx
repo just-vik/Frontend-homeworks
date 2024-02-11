@@ -1,32 +1,23 @@
-type Student = {
+type Props = {
     firstName: string;
     lastName: string;
-    assessment: number[];
+    assessments: number[];
 };
 
-type Props = { students: Student[] };
 
-function Students({ students }: Props) {
+function Students({ firstName, lastName, assessments }: Props) {
     return (
         <div>
-            {students.map((student, index) => (
-                <div key={index}>
-                    <p>{student.firstName} {student.lastName}</p>
-                    <p>{avrgAssessment(student.assessment)}</p>
-                </div>
-            ))}
+            <p>{firstName} {lastName}</p>
+            <p>{averageScore(assessments)}</p>
         </div>
     );
 }
 
-function avrgAssessment(assessments: number[]): number | string {
-    if (assessments.length === 0) {
-        return 'No assessments';
-    }
-    const sum = assessments.reduce((total, assessment) => total + assessment, 0);
-    return sum / assessments.length;
+function averageScore(assessments: number[]) {
+    const sum = assessments.reduce((acc: any, val: any) => acc + val, 0);
+    const avrg = sum / assessments.length;
+    return avrg.toFixed(2);
 }
-
-
 
 export default Students;
