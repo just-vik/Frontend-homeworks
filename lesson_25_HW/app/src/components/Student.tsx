@@ -27,4 +27,6 @@ function avrgAssessment(assessments: number[]): number | string {
     return sum / assessments.length;
 }
 
+
+
 export default Students;
